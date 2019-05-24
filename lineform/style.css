@@ -1,0 +1,136 @@
+@supports (-ms-ime-align:auto) {
+    .css_selector {
+        body {
+            margin: 0;
+            font-family:  "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+        }
+        
+        .body-wrapper {
+            text-align: center;
+            margin: 5% auto;
+            max-width: 430px;
+        }
+        
+        .container {
+            /*border: 1px solid rgba(44, 44, 44, 0.7);*/
+            border-radius: 5px;
+            background: url(./e09c797b0e64192dc516b5a1b5be09cb_l.jpg) no-repeat center fixed;
+            background-size: cover;
+            padding-bottom: 15px;
+            
+        }
+        
+        .form-wrapper:before {
+            z-index: 0;
+            content: "";
+            display: block;
+            background-color:rgba(255, 255, 255, 0.493);
+          }
+        
+        h2 {
+            margin-top: 50px;
+            margin-bottom: 20px;
+            background-color: rgba(216, 240, 251, 0.74);
+        }
+        
+        .form-content {
+            text-align: left;
+            padding-bottom: 5%;
+            
+        }
+        
+        label {
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        p {
+            text-align: left;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .logo {
+            margin-bottom: 15px;
+        }
+        input {
+            margin-bottom: 50px;
+            
+            
+        }
+        button {
+            font-weight: bold;
+            margin: 15px 0;
+        }
+      }
+    }
+
+body {
+    margin: 0;
+    font-family:  "游明朝", "YuMincho", "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+
+a {
+    color: black;
+}
+
+.body-wrapper {
+    text-align: center;
+    margin: 5% auto;
+    max-width: 430px;
+}
+
+.container {
+    border-radius: 5px;
+    background: url(./e09c797b0e64192dc516b5a1b5be09cb_l.jpg) no-repeat center fixed;
+    background-size: cover;
+    padding-bottom: 15px;
+    
+}
+
+.form-wrapper:before {
+    z-index: 0;
+    
+    content: "";
+    display: block;
+    background-color:rgba(255, 255, 255, 0.493);
+  }
+
+h2 {
+    
+    border: 1px solid rgb(37, 37, 37);
+    border-radius: 5px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.form-content {
+    text-align: left;
+    padding-bottom: 5%;
+    
+}
+
+label {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+p {
+    text-align: left;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.logo {
+    margin-bottom: 15px;
+}
+input {
+    margin-bottom: 50px;
+    
+    
+}
+button {
+    font-weight: bold;
+    margin-top: 20px;
+}
+

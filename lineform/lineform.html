@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <title>エサキメディカルお問い合わせフォーム</title>
+    <!-- 送信の確認 -->
+       
+  </head>
+
+  <body>
+    <div class="body-wrapper">
+      <img src="./logo.png" alt="エサキメディカルのロゴイメージです" class="logo">
+      <div id="formWrapper" class="container">
+          <div class="content-wrapper">
+              <h2 class="d-inline-flex p-2 bd-highlight">お問合わせフォーム</h1>
+                <div class="row"><form action="https://docs.google.com/forms/d/e/1FAIpQLSew70D5mX1MWB2wL4mzj55UMZSqVoHv2IcyIFccfQwA9gR4TA/formResponse" method="POST" class="form-content" name="lineForm" target="dummyIframe"></div>
+                      <p>お名前：</p>
+                      <input id="name" type="text" name="entry.590476207" style="width: 300px;" required>
+                      <p>日中繋がりやすいご連絡先：</p>
+                      <input id="tel" type="text" name="entry.1464371298" style="width: 300px;" required> 
+                      <p>お問合せ項目：</p>
+                      <label class="radio-ck"><input id="formType" type="radio" name="entry.1145161783" value="メンテナンス">メンテナンス</label><br>
+                      <label class="radio-ck"><input id="formType" type="radio" name="entry.1145161783" value="トムソンベッド（カイロベッド）">トムソンベッド（カイロベッド）</label><br>
+                      <label class="radio-ck"><input id="formType" type="radio" name="entry.1145161783" value="その他・商品について">その他・商品について</label>                  
+                      <p>お問合わせ内容：</p>
+                      <textarea id="formText" type="textarea" name="entry.1627749089" style="width: 300px; height:80px;" wrap="soft" placeholder="ここに内容を記述してください。" required></textarea>
+                      <div><button id="submitButton" type="submit" onclick="check();">送信する</button></div>
+          </div>
+          <iframe name="dummyIframe" style="display:none;"></iframe>
+      </div>
+      <div id="thxMessage" style="display:none;">お問い合わせありがとうございました。<br>担当者より折り返しご連絡させていただきます。<br>万が一、３営業日以上ご連絡のない場合は<br>お手数ですがもう一度お問合せください。<br>何卒よろしくお願い申し上げます。</div>
+      <div><small>※ご入力いただいた内容は、<br>お客様のご依頼内容の処理のみに使用いたします。</small></div>
+      <div><small>&copy; <script>new Date().getFullYear()>2010&&document.write(new Date().getFullYear());</script>, <a href="https://esakimedical.co.jp/">江崎器械 株式会社</a>.</small></div>
+      <script src="./formcheck.js"></script>
+    </div>
+  </body>
+</html>
