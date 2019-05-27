@@ -9,29 +9,38 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <title>エサキメディカルお問い合わせフォーム</title>
     <!-- 送信の確認 -->
        
   </head>
 
   <body>
-    <div class="body-wrapper">
+    <div id="app" class="body-wrapper">
       <img src="./logo.png" alt="エサキメディカルのロゴイメージです" class="logo">
       <div id="formWrapper" class="container">
           <div class="content-wrapper">
               <h2 class="d-inline-flex p-2 bd-highlight">お問合わせフォーム</h1>
                 <div class="row"><form action="https://docs.google.com/forms/d/e/1FAIpQLSew70D5mX1MWB2wL4mzj55UMZSqVoHv2IcyIFccfQwA9gR4TA/formResponse" method="POST" class="form-content" name="lineForm" target="dummyIframe"></div>
+                  <div style="color: red;">{{ message }}</div>
                       <p>お名前：</p>
-                      <input id="name" type="text" name="entry.590476207" style="width: 300px;" required>
-                      <p>日中繋がりやすいご連絡先：</p>
-                      <input id="tel" type="text" name="entry.1464371298" style="width: 300px;" required> 
+                      <input v-model="name" type="text" name="entry.590476207" style="width: 300px;" ><br>
+                      <p>日中の連絡先(お電話番号)：</p>
+                      
+                      <input v-model="tel" type="number" name="entry.1464371298" style="width: 300px;" required><br>
+                    
                       <p>お問合せ項目：</p>
-                      <label class="radio-ck"><input id="formType" type="radio" name="entry.1145161783" value="メンテナンス">メンテナンス</label><br>
-                      <label class="radio-ck"><input id="formType" type="radio" name="entry.1145161783" value="トムソンベッド（カイロベッド）">トムソンベッド（カイロベッド）</label><br>
-                      <label class="radio-ck"><input id="formType" type="radio" name="entry.1145161783" value="その他・商品について">その他・商品について</label>                  
+                      
+                      <br>
+                      <label class="radio-ck"><input v-model="formtype" type="radio" name="entry.1145161783" value="メンテナンス">メンテナンス</label><br>
+                      <label class="radio-ck"><input v-model="formtype" type="radio" name="entry.1145161783" value="トムソンベッド（カイロベッド）">トムソンベッド（カイロベッド）</label><br>
+                      <label class="radio-ck"><input v-model="formtype" type="radio" name="entry.1145161783" value="その他・商品について">その他・商品について</label><br>            
+                      
                       <p>お問合わせ内容：</p>
-                      <textarea id="formText" type="textarea" name="entry.1627749089" style="width: 300px; height:80px;" wrap="soft" placeholder="ここに内容を記述してください。" required></textarea>
-                      <div><button id="submitButton" type="submit" onclick="check();">送信する</button></div>
+                      
+                      <textarea v-model="formtext" type="textarea" name="entry.1627749089" style="width: 300px; height:80px;" wrap="soft" placeholder="お問合せ内容を記述してください。" required></textarea><br>
+                      {{ guid }}
+                      <button type="submit" v-on:click="check()" v-show="btnFlag">送信する</button>
           </div>
           <iframe name="dummyIframe" style="display:none;"></iframe>
       </div>
@@ -40,5 +49,47 @@
       <div><small>&copy; <script>new Date().getFullYear()>2010&&document.write(new Date().getFullYear());</script>, <a href="https://esakimedical.co.jp/">江崎器械 株式会社</a>.</small></div>
       <script src="./formcheck.js"></script>
     </div>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          name: '',
+          tel: '',
+          formtext: '',
+          guid: '項目を入力していただくと、送信ボタンが出ます。',
+        },
+        computed: {
+          message : function(){
+            this.btnFlag = 0;
+            if(this.name.length <= 3) {
+              return 'お名前を入力してください。';
+            } else if(this.tel.length <= 9){
+              return 'お電話番号を入力してください。';
+
+            } else if(this.formtext.length <= 3){
+              return 'お問い合わせ項目・内容をご記入ください。';
+            } else {
+              this.btnFlag = 1;
+              return '';
+            }
+          },
+        },
+        methods: {
+          check: function(){
+            if(window.confirm('お問合せを送信してよろしいですか？')){
+              alert('お問合せを送信しました。');
+              this.name= '';
+              this.tel= '';
+              this.formtext= '';
+              this.formtype.checked = 0; 
+              }
+            }
+          
+        },
+        created: function(){
+          this.name = '';
+        }
+      });
+    </script>
   </body>
 </html>
