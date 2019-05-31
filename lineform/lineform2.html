@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="./style.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<title>エサキメディカルお問い合わせフォーム</title>
+	<!-- 送信の確認 -->
+
+</head>
+
+<body>
+<div id="app" class="body-wrapper">
+	<img src="./logo.png" alt="エサキメディカルのロゴイメージです" class="logo">
+	<div id="formWrapper" class="container">
+		<div class="content-wrapper">
+			<h2 class="d-inline-flex p-2 bd-highlight">お問合わせフォーム</h2>
+			<form class="row mx-auto" action="https://docs.google.com/forms/d/e/1FAIpQLSew70D5mX1MWB2wL4mzj55UMZSqVoHv2IcyIFccfQwA9gR4TA/formResponse" method="POST" class="form-content" name="lineForm" target="dummyIframe">
+
+				<div class="col-12" style="margin:1rem 0;">
+					<div style="color: red;">{{ message }}</div>
+				</div>
+
+				<div class="col-12" style="margin:1rem 0;">
+					<div class="form-group">
+						<label>お名前:</label>
+						<input class="form-control" v-model="name" type="text" name="entry.590476207">
+					</div>
+				</div>
+
+				<div class="col-12" style="margin:1rem 0;">
+					<div class="form-group">
+						<label>日中の連絡先(お電話番号):</label>
+						<input class="form-control" v-model="tel" type="text" name="entry.1464371298" required>
+					</div>
+				</div>
+
+				<div class="col-12" style="margin:1rem 0;">
+					<div class="form-group">
+						<label>お問合せ項目:</label>
+						<div style="height: 1.8rem;"><label><input v-model="formtype" type="radio" name="entry.1145161783" value="メンテナンス">メンテナンス</label></div>
+						<div style="height: 1.8rem;"><label><input v-model="formtype" type="radio" name="entry.1145161783" value="トムソンベッド(カイロベッド)">トムソンベッド(カイロベッド)</label></div>
+						<div style="height: 1.8rem;"><label><input v-model="formtype" type="radio" name="entry.1145161783" value="その他・商品について">その他・商品について</label></div>
+					</div>
+				</div>
+
+				<div class="col-12" style="margin:1rem 0;">
+					<div class="form-group">
+						<label>お問合わせ内容:</label>
+						<textarea class="form-control" v-model="formtext" type="textarea" name="entry.1627749089" wrap="soft" placeholder="お問合せ内容を記述してください。" required></textarea>
+						<div>{{ guid }}</div>
+						<button class="btn btn-primary" type="submit" v-on:click="check()" v-show="btnFlag">送信する</button>
+					</div>
+				</div>
+
+			</form>
+		</div>
+		<div id="thxMessage" style="display:none;">お問い合わせありがとうございました。<br/>担当者より折り返しご連絡させていただきます。<br/>万が一、３営業日以上ご連絡のない場合は<br/>お手数ですがもう一度お問合せください。<br/>何卒よろしくお願い申し上げます。</div>
+		<div>
+			<small>※ご入力いただいた内容は、<br/>お客様のご依頼内容の処理のみに使用いたします。</small>
+		</div>
+		<div>
+			<small>&copy;
+				<script>new Date().getFullYear() > 2010 && document.write(new Date().getFullYear());</script>
+				, <a href="https://esakimedical.co.jp/">江崎器械 株式会社</a>.
+			</small>
+		</div>
+
+	</div>
+	<iframe name="dummyIframe" style="display:none;"></iframe>
+</div>
+
+<script src="./formcheck.js"></script>
+</div>
+<script>
+	var app = new Vue({
+		el: '#app',
+		data: {
+			name: '',
+			tel: '',
+			formtext: '',
+			guid: '項目を入力していただくと、送信ボタンが出ます。',
+		},
+		computed: {
+			message: function () {
+				this.btnFlag = 0;
+				if (this.name.length <= 3) {
+					return 'お名前を入力してください。';
+				} else if (this.tel.length <= 9) {
+					return 'お電話番号を入力してください。';
+
+				} else if (this.formtext.length <= 3) {
+					return 'お問い合わせ項目・内容をご記入ください。';
+				} else {
+					this.btnFlag = 1;
+					return '';
+				}
+			},
+		},
+		methods: {
+			check: function () {
+				if (window.confirm('お問合せを送信してよろしいですか？')) {
+					alert('お問合せを送信しました。');
+					this.name = '';
+					this.tel = '';
+					this.formtext = '';
+					this.formtype.checked = 0;
+				}
+			}
+
+		},
+		created: function () {
+			this.name = '';
+		}
+	});
+</script>
+</body>
+</html>
